@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "parcel-bundler": "^1.11.0",
+    "ts-config-mobiquity-core": "^5.0.0",
+    "typescript": "^3.2.4"
+  },
+  "dependencies": {
+    "parse-color": "^1.0.0"
+  }
+}
