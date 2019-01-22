@@ -16,18 +16,27 @@ export const HslaInput = () => {
       return input.current.value;
     });
 
-    const { hex, rgba, hsla: parsedHsla } = parse(
-      `hsla(${currentHslValues[0]}, ${currentHslValues[1]}, ${
-        currentHslValues[2]
-      }, ${currentHslValues[3]})`,
-    );
-
-    if (parsedHsla && !parsedHsla.some(isNaN)) {
-      setHex(hex);
-      setRgba(rgba);
+    // Check whether one of the inputs has a valid hsl(a) string to parse
+    const parsedFromInput = parse(value);
+    if (parsedFromInput.hsla && !parsedFromInput.hsla.some(isNaN)) {
+      setHex(parsedFromInput.hex);
+      setRgba(parsedFromInput.rgba);
+      setHsla(parsedFromInput.hsla);
     }
+    else {
+      const { hex, rgba, hsla: parsedHsla } = parse(
+        `hsla(${currentHslValues[0]}, ${currentHslValues[1]}, ${
+          currentHslValues[2]
+        }, ${currentHslValues[3]})`,
+      );
 
-    setHsla(currentHslValues);
+      if (parsedHsla && !parsedHsla.some(isNaN)) {
+        setHex(hex);
+        setRgba(rgba);
+      }
+
+      setHsla(currentHslValues);
+    }
   };
 
   return (

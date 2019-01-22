@@ -16,18 +16,26 @@ export const RgbaInput = () => {
       return input.current.value;
     });
 
-    const { hex, rgba: parsedRgba, hsla } = parse(
-      `rgba(${currentRgbValues[0]}, ${currentRgbValues[1]}, ${
-        currentRgbValues[2]
-      }, ${currentRgbValues[3]})`,
-    );
+    // Check whether one of the inputs has a valid rgb(a) string to parse
+    const parsedFromInput = parse(value);
+    if (parsedFromInput.rgba && !parsedFromInput.rgba.some(isNaN)) {
+      setHex(parsedFromInput.hex);
+      setHsla(parsedFromInput.hsla);
+      setRgba(parsedFromInput.rgba);
+    } else {
+      const { hex, rgba: parsedRgba, hsla } = parse(
+        `rgba(${currentRgbValues[0]}, ${currentRgbValues[1]}, ${
+          currentRgbValues[2]
+        }, ${currentRgbValues[3]})`,
+      );
 
-    if (parsedRgba && !parsedRgba.some(isNaN)) {
-      setHex(hex);
-      setHsla(hsla);
+      if (parsedRgba && !parsedRgba.some(isNaN)) {
+        setHex(hex);
+        setHsla(hsla);
+      }
+
+      setRgba(currentRgbValues);
     }
-
-    setRgba(currentRgbValues);
   };
 
   return (
