@@ -6,8 +6,11 @@ import { MultiInput } from './inputs/MultiInput';
 
 export const ColorToolApp = () => {
   const [hex, setHex] = useState('');
-  const [rgba, setRgba] = useState([]);
-  const [hsla, setHsla] = useState([]);
+  // Default to empty inputs for RGBA / HSLA. Most of the time we want to
+  // treat the inputs as numbers. Using a value is required to let React know
+  // that the inputs are controlled.
+  const [rgba, setRgba] = useState(['', '', '', ''] as any);
+  const [hsla, setHsla] = useState(['', '', '', ''] as any);
 
   const state: ColorToolContextProps = {
     hex,
