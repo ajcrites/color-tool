@@ -15,7 +15,7 @@ export const HexInput = () => {
       setHsla(hsla);
     }
 
-    setHex(value);
+    setHex(value.replace(/#+/, '#').substring(0, 7));
   };
 
   const onFocus = () => {
@@ -33,6 +33,10 @@ export const HexInput = () => {
         value={hex}
         onChange={onChange}
         onFocus={onFocus}
+        style={{
+          backgroundColor:
+            parse(hex).hex || !hex || hex === '#' ? '' : '#ffb8c2',
+        }}
       />
     </label>
   );

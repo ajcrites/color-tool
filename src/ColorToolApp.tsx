@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import { ColorToolContextProps, ColorToolContext } from './ColorToolContext';
 
 import { HexInput } from './inputs/HexInput';
-import { RgbaInput } from './inputs/RgbaInput';
-import { HslaInput } from './inputs/HslaInput';
+import { MultiInput } from './inputs/MultiInput';
 
 export const ColorToolApp = () => {
   const [hex, setHex] = useState('');
-  const [rgba, setRgba] = useState([0, 0, 0, 0]);
-  const [hsla, setHsla] = useState([0, 0, 0, 0]);
+  const [rgba, setRgba] = useState([]);
+  const [hsla, setHsla] = useState([]);
 
   const state: ColorToolContextProps = {
     hex,
@@ -25,9 +24,9 @@ export const ColorToolApp = () => {
       <ColorToolContext.Provider value={state}>
         <HexInput />
         <br />
-        <RgbaInput />
+        <MultiInput parser="rgba" label="RGB(A): " />
         <br />
-        <HslaInput />
+        <MultiInput parser="hsla" label="HSL(A): " />
         <br />
         <div
           style={{
