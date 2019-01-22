@@ -22,12 +22,18 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({
 
   const onChange = changedIdx => ({ target: { value } }) => {
     let invalidInput = isNaN(Math.max(0, value));
+
+    // Get values of all current inputs. The input we are updating should
+    // yield a new value based on user input.
     const currentColorValues = inputs.map((input, idx) => {
       if (idx === changedIdx) {
+        // Allow for empty strings and non-numeric inputs for rgb(...) etc.
+        // that can be parsed
         if (value === '' || invalidInput) {
           return value;
         }
 
+        // ...otherwise clamp numeric value for new input
         return clampMultiColorValue(parser, value, idx);
       }
 
