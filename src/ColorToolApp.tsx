@@ -50,7 +50,6 @@ export const ColorToolApp = () => {
         <HslaModifier label="darken" hslaIndex={2} amount={-10} />
         <HslaModifier label="saturate" hslaIndex={1} amount={10} />
         <HslaModifier label="desaturate" hslaIndex={1} amount={-10} />
-
       </ColorToolContext.Provider>
     </main>
   );

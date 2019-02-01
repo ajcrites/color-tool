@@ -30,5 +30,5 @@ export function clampMultiColor(parser: 'rgba' | 'hsla', values: number[]) {
 }
 
 export function parseAsClamped(parser, values: number[]) {
-  return parse(`${parser}(${clampMultiColor(parser, values)})`)
+  return parse(`${parser}(${clampMultiColor(parser, values)})`);
 }

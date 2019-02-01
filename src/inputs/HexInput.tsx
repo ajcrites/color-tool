@@ -28,7 +28,8 @@ export const HexInput = () => {
         onChange={onChange}
         onFocus={onFocus}
         style={{
-          backgroundColor: parse(hex).hex || !hex || hex === '#' ? '' : '#ffb8c2',
+          backgroundColor:
+            parse(hex).hex || !hex || hex === '#' ? '' : '#ffb8c2',
         }}
       />
     </label>

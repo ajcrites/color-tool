@@ -18,8 +18,6 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({
   const inputs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
   const onChange = changedIdx => ({ target: { value } }) => {
-    let invalidInput = isNaN(Math.max(0, value));
-
     // Get values of all current inputs. The input we are updating should
     // yield a new value based on user input.
     const currentColorValues = inputs.map(({ current: { value } }) => value);
@@ -32,7 +30,7 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({
     } else {
       dispatch(updateMulti(parser, currentColorValues));
 
-      if (invalidInput) {
+      if (isNaN(Math.max(0, value))) {
         inputValidity[changedIdx] = false;
       } else {
         inputValidity[changedIdx] = true;
