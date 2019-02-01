@@ -1,7 +1,8 @@
 import React, { useContext, useRef, useState, FunctionComponent } from 'react';
 import parse from 'parse-color';
 
-import { ColorToolContext } from '../ColorToolContext';
+import { ColorToolContext } from '~/ColorToolContext';
+import { updateMulti } from '~/color/actions';
 
 export interface MultiInputProps {
   parser: 'rgba' | 'hsla';
@@ -17,8 +18,6 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({
   const inputs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
   const onChange = changedIdx => ({ target: { value } }) => {
-    let invalidInput = isNaN(Math.max(0, value));
-
     // Get values of all current inputs. The input we are updating should
     // yield a new value based on user input.
     const currentColorValues = inputs.map(({ current: { value } }) => value);
@@ -26,12 +25,12 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({
     // Check whether one of the inputs has a valid rgb(a)/hsl(a) string to parse
     const parsedFromInput = parse(value);
     if (parsedFromInput[parser]) {
-      dispatch({ type: parser, payload: parsedFromInput[parser] });
+      dispatch(updateMulti(parser, parsedFromInput[parser]));
       setInputValidity([true, true, true, true]);
     } else {
-      dispatch({ type: parser, payload: currentColorValues });
+      dispatch(updateMulti(parser, currentColorValues));
 
-      if (invalidInput) {
+      if (isNaN(Math.max(0, value))) {
         inputValidity[changedIdx] = false;
       } else {
         inputValidity[changedIdx] = true;

@@ -1,6 +1,10 @@
 {
   "extends": "./node_modules/ts-config-mobiquity-react-native/tsconfig.json",
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "~*": ["./*"]
+    },
     "esModuleInterop": true,
     "module": "es6"
   }
