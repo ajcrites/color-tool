@@ -1,14 +1,14 @@
 import React, { useReducer } from 'react';
 
-import { ColorToolContextProps, ColorToolContext } from './ColorToolContext';
+import { ColorToolContextProps, ColorToolContext } from '~/ColorToolContext';
 
-import { HexInput } from './inputs/HexInput';
-import { MultiInput } from './inputs/MultiInput';
-import { ColorInput } from './inputs/ColorInput';
+import { HexInput } from '~/color/controls/inputs/HexInput';
+import { MultiInput } from '~/color/controls/inputs/MultiInput';
+import { ColorInput } from '~/color/controls/inputs/ColorInput';
 
-import { HslaModifier } from './modifiers/HslaModifier';
+import { HslaModifier } from '~/color/controls/modifiers/HslaModifier';
 
-import { colorReducer } from './colorReducer';
+import { colorReducer } from '~/color/reducer';
 
 export const ColorToolApp = () => {
   // Default to empty inputs for RGBA / HSLA. Most of the time we want to

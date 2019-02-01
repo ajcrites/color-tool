@@ -1,8 +1,8 @@
 import { getType } from 'typesafe-actions';
 import parse from 'parse-color';
 
-import { parseAsClamped } from './color-check-util';
-import { ColorToolAction, ColorToolContextProps } from './ColorToolContext';
+import { parseAsClamped } from '~/color-check-util';
+import { ColorToolAction, ColorToolContextProps } from '~/ColorToolContext';
 import * as actions from './actions';
 
 export type ColorToolState = Pick<

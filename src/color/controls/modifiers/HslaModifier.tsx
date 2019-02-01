@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
-import { ColorToolContext } from '../ColorToolContext';
-import { updateMulti } from '../actions';
+import { ColorToolContext } from '~/ColorToolContext';
+import { updateMulti } from '~/color/actions';
 
 export interface HslaModifierProps {
   label: string;

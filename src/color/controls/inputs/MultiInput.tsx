@@ -1,8 +1,8 @@
 import React, { useContext, useRef, useState, FunctionComponent } from 'react';
 import parse from 'parse-color';
 
-import { ColorToolContext } from '../ColorToolContext';
-import { updateMulti } from '../actions';
+import { ColorToolContext } from '~/ColorToolContext';
+import { updateMulti } from '~/color/actions';
 
 export interface MultiInputProps {
   parser: 'rgba' | 'hsla';

@@ -1,8 +1,8 @@
 import React, { useContext, useRef } from 'react';
 import parse from 'parse-color';
 
-import { ColorToolContext } from '../ColorToolContext';
-import { updateHex } from '../actions';
+import { ColorToolContext } from '~/ColorToolContext';
+import { updateHex } from '~/color/actions';
 
 export const HexInput = () => {
   const { hex, dispatch } = useContext(ColorToolContext);
