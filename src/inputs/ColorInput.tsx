@@ -4,7 +4,7 @@ import parse from 'parse-color';
 import { ColorToolContext } from '../ColorToolContext';
 
 export const ColorInput = () => {
-  const { hex, setHex, setRgba, setHsla } = useContext(ColorToolContext);
+  const { hex, dispatch } = useContext(ColorToolContext);
   const input = useRef(null);
 
   // Only show the color input if it's supported by the browser
@@ -16,11 +16,8 @@ export const ColorInput = () => {
     }
   }, []);
 
-  const onChange = ({ target: { value } }) => {
-    const { rgba, hsla } = parse(value);
-    setHex(value);
-    setRgba(rgba);
-    setHsla(hsla);
+  const onChange = ({ target: { value: payload } }) => {
+    dispatch({ type: 'hex', payload })
   };
 
   return show ? (

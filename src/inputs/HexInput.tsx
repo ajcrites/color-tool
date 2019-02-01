@@ -4,23 +4,16 @@ import parse from 'parse-color';
 import { ColorToolContext } from '../ColorToolContext';
 
 export const HexInput = () => {
-  const { hex, setHex, setRgba, setHsla } = useContext(ColorToolContext);
+  const { hex, dispatch } = useContext(ColorToolContext);
   const input = useRef(null);
 
-  const onChange = ({ target: { value } }) => {
-    const { hex, rgba, hsla } = parse(value);
-
-    if (hex && !/NaN/.test(hex)) {
-      setRgba(rgba);
-      setHsla(hsla);
-    }
-
-    setHex(value.replace(/#+/, '#').substring(0, 7));
+  const onChange = ({ target: { value: payload } }) => {
+    dispatch({ type: 'hex', payload });
   };
 
   const onFocus = () => {
     if (!hex) {
-      setHex('#');
+      dispatch({ type: 'hex', payload: '#' });
     }
   };
 
@@ -34,8 +27,7 @@ export const HexInput = () => {
         onChange={onChange}
         onFocus={onFocus}
         style={{
-          backgroundColor:
-            parse(hex).hex || !hex || hex === '#' ? '' : '#ffb8c2',
+          backgroundColor: parse(hex).hex || !hex || hex === '#' ? '' : '#ffb8c2',
         }}
       />
     </label>
