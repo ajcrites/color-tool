@@ -2,7 +2,6 @@ import React, { useContext, useRef, useState, FunctionComponent } from 'react';
 import parse from 'parse-color';
 
 import { ColorToolContext } from '../ColorToolContext';
-import { clampMultiColorValue } from '../color-check-util';
 
 export interface MultiInputProps {
   parser: 'rgba' | 'hsla';
@@ -22,20 +21,7 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({
 
     // Get values of all current inputs. The input we are updating should
     // yield a new value based on user input.
-    const currentColorValues = inputs.map((input, idx) => {
-      if (idx === changedIdx) {
-        // Allow for empty strings and non-numeric inputs for rgb(...) etc.
-        // that can be parsed
-        if (value === '' || invalidInput) {
-          return value;
-        }
-
-        // ...otherwise clamp numeric value for new input
-        return clampMultiColorValue(parser, value, idx);
-      }
-
-      return input.current.value;
-    });
+    const currentColorValues = inputs.map(({ current: { value } }) => value);
 
     // Check whether one of the inputs has a valid rgb(a)/hsl(a) string to parse
     const parsedFromInput = parse(value);

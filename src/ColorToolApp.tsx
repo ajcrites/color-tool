@@ -6,6 +6,8 @@ import { HexInput } from './inputs/HexInput';
 import { MultiInput } from './inputs/MultiInput';
 import { ColorInput } from './inputs/ColorInput';
 
+import { HslaModifier } from './modifiers/HslaModifier';
+
 import { colorReducer } from './colorReducer';
 
 export const ColorToolApp = () => {
@@ -43,6 +45,12 @@ export const ColorToolApp = () => {
             height: 50,
           }}
         />
+
+        <HslaModifier label="lighten" hslaIndex={2} amount={10} />
+        <HslaModifier label="darken" hslaIndex={2} amount={-10} />
+        <HslaModifier label="saturate" hslaIndex={1} amount={10} />
+        <HslaModifier label="desaturate" hslaIndex={1} amount={-10} />
+
       </ColorToolContext.Provider>
     </main>
   );
