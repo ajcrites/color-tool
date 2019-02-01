@@ -1,13 +1,11 @@
-import { createContext } from 'react';
+import { createContext, Dispatch } from 'react';
 
 export interface ColorToolContextProps {
   hex: string;
   rgba: number[];
   hsla: number[];
 
-  setHex: (value) => void;
-  setRgba: (value) => void;
-  setHsla: (value) => void;
+  dispatch: Dispatch<{ type, payload }>;
 }
 
 export const ColorToolContext = createContext<ColorToolContextProps>(

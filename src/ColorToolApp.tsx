@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 
 import { ColorToolContextProps, ColorToolContext } from './ColorToolContext';
 
@@ -6,22 +6,26 @@ import { HexInput } from './inputs/HexInput';
 import { MultiInput } from './inputs/MultiInput';
 import { ColorInput } from './inputs/ColorInput';
 
+import { HslaModifier } from './modifiers/HslaModifier';
+
+import { colorReducer } from './colorReducer';
+
 export const ColorToolApp = () => {
-  const [hex, setHex] = useState('');
   // Default to empty inputs for RGBA / HSLA. Most of the time we want to
   // treat the inputs as numbers. Using a value is required to let React know
   // that the inputs are controlled.
-  const [rgba, setRgba] = useState(['', '', '', ''] as any);
-  const [hsla, setHsla] = useState(['', '', '', ''] as any);
+  const [{ hex, rgba, hsla }, dispatch] = useReducer(colorReducer, {
+    hex: '',
+    rgba: ['', '', '', ''],
+    hsla: ['', '', '', ''],
+  });
 
   const state: ColorToolContextProps = {
     hex,
     rgba,
     hsla,
 
-    setHex,
-    setRgba,
-    setHsla,
+    dispatch,
   };
 
   return (
@@ -41,6 +45,12 @@ export const ColorToolApp = () => {
             height: 50,
           }}
         />
+
+        <HslaModifier label="lighten" hslaIndex={2} amount={10} />
+        <HslaModifier label="darken" hslaIndex={2} amount={-10} />
+        <HslaModifier label="saturate" hslaIndex={1} amount={10} />
+        <HslaModifier label="desaturate" hslaIndex={1} amount={-10} />
+
       </ColorToolContext.Provider>
     </main>
   );
