@@ -2,18 +2,19 @@ import React, { useContext, useRef } from 'react';
 import parse from 'parse-color';
 
 import { ColorToolContext } from '../ColorToolContext';
+import { updateHex } from '../actions';
 
 export const HexInput = () => {
   const { hex, dispatch } = useContext(ColorToolContext);
   const input = useRef(null);
 
-  const onChange = ({ target: { value: payload } }) => {
-    dispatch({ type: 'hex', payload });
+  const onChange = ({ target: { value } }) => {
+    dispatch(updateHex(value));
   };
 
   const onFocus = () => {
     if (!hex) {
-      dispatch({ type: 'hex', payload: '#' });
+      dispatch(updateHex('#'));
     }
   };
 

@@ -9,6 +9,7 @@
   "dependencies": {
     "parse-color": "^1.0.0",
     "react": "^16.8.0-alpha.1",
-    "react-dom": "^16.8.0-alpha.1"
+    "react-dom": "^16.8.0-alpha.1",
+    "typesafe-actions": "^3.0.0"
   }
 }

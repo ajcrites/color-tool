@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
 import { ColorToolContext } from '../ColorToolContext';
+import { updateMulti } from '../actions';
 
 export interface HslaModifierProps {
   label: string;
@@ -16,7 +17,7 @@ export const HslaModifier = ({ label, hslaIndex, amount }) => {
 
   const onClick = () => {
     hsla[hslaIndex] = hsla[hslaIndex] + amount;
-    dispatch({ type: 'hsla', payload: hsla });
+    dispatch(updateMulti('hsla', hsla));
   };
 
   return (
