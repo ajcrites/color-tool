@@ -21,10 +21,6 @@ export function clampMultiColor(parser: 'rgba' | 'hsla', values: number[]) {
   return values.map((value, idx) => clampMultiColorValue(parser, value, idx));
 }
 
-export function parseAsClamped(parser, values: string) {
-  const { [parser]: color } = parse(values);
-
-  if (color && !color.some(isNaN)) {
-    return parse(`${parser}(${clampMultiColor(parser, color)})`);
-  }
+export function parseAsClamped(parser, values: number[]) {
+  return parse(`${parser}(${clampMultiColor(parser, values)})`)
 }
