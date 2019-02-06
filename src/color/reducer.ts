@@ -34,18 +34,20 @@ export function colorReducer(
 
     case getType(actions.updateMulti): {
       const { parser, value } = action.payload;
-      const { hex, rgba, hsla, [parser]: color } = parseAsClamped(
-        parser,
-        value,
-      );
+      if (value[3] !== '0.') {
+        const { hex, rgba, hsla, [parser]: color } = parseAsClamped(
+          parser,
+          value,
+        );
 
-      if (color && !color.some(isNaN)) {
-        return {
-          hex,
-          hsla,
-          rgba,
-          [parser]: color,
-        };
+        if (color && !color.some(isNaN)) {
+          return {
+            hex,
+            hsla,
+            rgba,
+            [parser]: color,
+          };
+        }
       }
       return {
         ...state,

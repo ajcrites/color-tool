@@ -7,8 +7,9 @@ export function clampMultiColorValue(parser: 'rgba' | 'hsla', value, idx) {
 
   // We want to allow empty strings for values. isNaN('') returns `false`,
   // and `Math.max(0, '')` returns `0`, so we do this additional check here
-  // to pass empty strings through.
-  if (typeof value === 'string' && !/^\d+$/.test(value)) {
+  // to pass empty strings through. Also allow negative numbers to go through
+  // to allow them to be clamped to 0
+  if (typeof value === 'string' && !/^-?\d+$/.test(value)) {
     return value;
   }
 
