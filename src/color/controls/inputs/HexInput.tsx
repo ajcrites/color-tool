@@ -18,6 +18,10 @@ export const HexInput = () => {
     }
   };
 
+  const copyToClipboard = () => {
+    (navigator as any).clipboard.writeText(hex);
+  };
+
   return (
     <label>
       Hex:{' '}
@@ -32,6 +36,9 @@ export const HexInput = () => {
             parse(hex).hex || !hex || hex === '#' ? '' : '#ffb8c2',
         }}
       />
+      <button
+        onClick={copyToClipboard}
+      ><img width="16" height="16" src="copy-to-clipboard.svg" /></button>
     </label>
   );
 };

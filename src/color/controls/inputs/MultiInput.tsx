@@ -38,6 +38,10 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({ parser, label }
     }
   };
 
+  const copyToClipboard = () => {
+    (navigator as any).clipboard.writeText(`${parser}(${color.join()})`);
+  };
+
   return (
     <label>
       {label}
@@ -53,6 +57,9 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({ parser, label }
           }}
         />
       ))}
+      <button
+        onClick={copyToClipboard}
+      ><img width="16" height="16" src="copy-to-clipboard.svg" /></button>
     </label>
   );
 };
