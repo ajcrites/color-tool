@@ -3,6 +3,7 @@ import parse from 'parse-color';
 
 import { ColorToolContext } from '~/ColorToolContext';
 import { updateMulti } from '~/color/actions';
+import { isValidNumber } from '~/color-check-util';
 
 export interface MultiInputProps {
   parser: 'rgba' | 'hsla';
@@ -48,8 +49,7 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({ parser, label }
           value={color[idx]}
           onChange={onChange(idx)}
           style={{
-            // TODO: check for '0.'
-            backgroundColor: !isNaN(+color[idx]) || inputValidity[idx] ? '' : '#ffb8c2',
+            backgroundColor: !color[idx] || isValidNumber(color[idx] + '') ? '' : '#ffb8c2',
           }}
         />
       ))}
