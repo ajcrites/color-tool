@@ -1,7 +1,7 @@
 import { getType } from 'typesafe-actions';
 import parse from 'parse-color';
 
-import { parseAsClamped } from '~/color-check-util';
+import { isValidNumber, parseAsClamped } from '~/color-check-util';
 import { ColorToolAction, ColorToolContextProps } from '~/ColorToolContext';
 import * as actions from './actions';
 
@@ -34,18 +34,20 @@ export function colorReducer(
 
     case getType(actions.updateMulti): {
       const { parser, value } = action.payload;
-      const { hex, rgba, hsla, [parser]: color } = parseAsClamped(
-        parser,
-        value,
-      );
+      if (value.every(isValidNumber)) {
+        const { hex, rgba, hsla, [parser]: color } = parseAsClamped(
+          parser,
+          value,
+        );
 
-      if (color && !color.some(isNaN)) {
-        return {
-          hex,
-          hsla,
-          rgba,
-          [parser]: color,
-        };
+        if (color && !color.some(isNaN)) {
+          return {
+            hex,
+            hsla,
+            rgba,
+            [parser]: color,
+          };
+        }
       }
       return {
         ...state,

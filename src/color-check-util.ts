@@ -2,15 +2,18 @@ import parse from 'parse-color';
 
 // Utility functions for checking and creating valid parsed colors
 
+/**
+ * Check that the provided string value is a valid number. Numbers can be parsed
+ * from strings that do not match this regex, e.g. `'1a'` will be parsed as
+ * `1`, but we only want to parse strictly numeric values and pass others through
+ */
+export function isValidNumber(value: string) {
+  return /(^-?\d+(\.\d+)?$)|^\.\d+$/.test(value);
+}
+
 export function clampMultiColorValue(parser: 'rgba' | 'hsla', value, idx) {
   let maxClamp;
-
-  // We want to allow empty strings for values. isNaN('') returns `false`,
-  // and `Math.max(0, '')` returns `0`, so we do this additional check here
-  // to pass empty strings through.
-  if (typeof value === 'string' && !/^\d+$/.test(value)) {
-    return value;
-  }
+  let inputValue;
 
   if (parser === 'rgba' && idx < 3) {
     maxClamp = 255;
@@ -22,7 +25,13 @@ export function clampMultiColorValue(parser: 'rgba' | 'hsla', value, idx) {
     maxClamp = 1;
   }
 
-  return Math.min(maxClamp, Math.max(0, value));
+  if (idx < 3) {
+    inputValue = Math.round(value);
+  } else {
+    inputValue = value;
+  }
+
+  return Math.min(maxClamp, Math.max(0, inputValue));
 }
 
 export function clampMultiColor(parser: 'rgba' | 'hsla', values: number[]) {

@@ -3,16 +3,14 @@ import parse from 'parse-color';
 
 import { ColorToolContext } from '~/ColorToolContext';
 import { updateMulti } from '~/color/actions';
+import { isValidNumber } from '~/color-check-util';
 
 export interface MultiInputProps {
   parser: 'rgba' | 'hsla';
   label: string;
 }
 
-export const MultiInput: FunctionComponent<MultiInputProps> = ({
-  parser,
-  label,
-}) => {
+export const MultiInput: FunctionComponent<MultiInputProps> = ({ parser, label }) => {
   const { [parser]: color, dispatch } = useContext(ColorToolContext);
   const [inputValidity, setInputValidity] = useState([true, true, true, true]);
   const inputs = [useRef(null), useRef(null), useRef(null), useRef(null)];
@@ -30,6 +28,7 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({
     } else {
       dispatch(updateMulti(parser, currentColorValues));
 
+      // Treat '0.' as invalid to guide users to add a number after the decimal
       if (isNaN(Math.max(0, value))) {
         inputValidity[changedIdx] = false;
       } else {
@@ -50,7 +49,7 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({
           value={color[idx]}
           onChange={onChange(idx)}
           style={{
-            backgroundColor: inputValidity[idx] ? '' : '#ffb8c2',
+            backgroundColor: !color[idx] || isValidNumber(color[idx] + '') ? '' : '#ffb8c2',
           }}
         />
       ))}
