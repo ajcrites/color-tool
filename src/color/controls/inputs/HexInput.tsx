@@ -3,6 +3,7 @@ import parse from 'parse-color';
 
 import { ColorToolContext } from '~/ColorToolContext';
 import { updateHex } from '~/color/actions';
+import { CopyToClipboardButton } from './CopyToClipboardButton';
 
 export const HexInput = () => {
   const { hex, dispatch } = useContext(ColorToolContext);
@@ -28,10 +29,10 @@ export const HexInput = () => {
         onChange={onChange}
         onFocus={onFocus}
         style={{
-          backgroundColor:
-            parse(hex).hex || !hex || hex === '#' ? '' : '#ffb8c2',
+          backgroundColor: parse(hex).hex || !hex || hex === '#' ? '' : '#ffb8c2',
         }}
       />
+      <CopyToClipboardButton value={hex} />
     </label>
   );
 };

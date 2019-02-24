@@ -4,6 +4,7 @@ import parse from 'parse-color';
 import { ColorToolContext } from '~/ColorToolContext';
 import { updateMulti } from '~/color/actions';
 import { isValidNumber } from '~/color-check-util';
+import { CopyToClipboardButton } from './CopyToClipboardButton';
 
 export interface MultiInputProps {
   parser: 'rgba' | 'hsla';
@@ -53,6 +54,7 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({ parser, label }
           }}
         />
       ))}
+      <CopyToClipboardButton value={`${parser}(${color.join()})`} />
     </label>
   );
 };
