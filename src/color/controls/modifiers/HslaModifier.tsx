@@ -20,5 +20,5 @@ export const HslaModifier = ({ label, hslaIndex, amount }) => {
     dispatch(updateMulti('hsla', hsla));
   };
 
-  return <button onClick={onClick}>{label}</button>;
+  return <button className="modifier-button" onClick={onClick}>{label}</button>;
 };

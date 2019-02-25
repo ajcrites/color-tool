@@ -36,11 +36,9 @@ export const ColorToolApp = () => {
         <MultiInput parser="hsla" label="HSL(A): " />
         <ColorInput />
         <div
+          className="color-display"
           style={{
             backgroundColor: `rgba(${rgba.join()})`,
-            width: 50,
-            height: 50,
-            border: '1px solid black',
           }}
         />
 
