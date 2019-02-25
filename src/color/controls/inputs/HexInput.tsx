@@ -21,8 +21,9 @@ export const HexInput = () => {
 
   return (
     <label>
-      Hex:{' '}
+      <span className="input-label">Hex:</span>
       <input
+        className="color-input"
         type="text"
         ref={input}
         value={hex}

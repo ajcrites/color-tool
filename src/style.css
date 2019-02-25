@@ -1,9 +1,36 @@
-.colors label {
-  display: block;
+body {
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 25px;
 }
 
-#color {
-  width: 50px;
-  height: 50px;
-  border: 1px solid black;
+.colors label {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.input-label {
+  width: 100px;
+  display: inline-block;
+}
+
+.color-input {
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,.2);
+  vertical-align: middle;
+}
+.color-input:last-of-type {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.copy-to-clipboard-button {
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  height: 40px;
+  vertical-align: middle;
+  background-color: #37f244;
+  cursor: pointer;
 }

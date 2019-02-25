@@ -25,6 +25,7 @@ export const ColorInput = () => {
     <label>
       Color Picker:
       <input
+        style={{ marginLeft: 15 }}
         type="color"
         ref={input}
         value={parse(hex).hex}
