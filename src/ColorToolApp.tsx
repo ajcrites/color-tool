@@ -29,20 +29,16 @@ export const ColorToolApp = () => {
   };
 
   return (
-    <main>
+    <main className="colors">
       <ColorToolContext.Provider value={state}>
         <HexInput />
-        <br />
         <MultiInput parser="rgba" label="RGB(A): " />
-        <br />
         <MultiInput parser="hsla" label="HSL(A): " />
-        <br />
         <ColorInput />
         <div
+          className="color-display"
           style={{
             backgroundColor: `rgba(${rgba.join()})`,
-            width: 50,
-            height: 50,
           }}
         />
 
