@@ -14,8 +14,8 @@ export const KeywordInput = () => {
   };
 
   return (
-    <section aria-label="Keyword">
-      <label>
+    <section aria-label="Keyword" className="color-input-container">
+      <label className="color-input-label">
         <span className="input-label-text">Keyword:</span>
 
         <input

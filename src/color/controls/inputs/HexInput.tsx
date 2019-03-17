@@ -20,8 +20,8 @@ export const HexInput = () => {
   };
 
   return (
-    <section aria-label="Hex">
-      <label>
+    <section aria-label="Hex" className="color-input-container">
+      <label className="color-input-label">
         <span className="input-label-text">Hex:</span>
         <input
           className="color-input"

@@ -22,7 +22,7 @@ export const ColorInput = () => {
   };
 
   return show ? (
-    <section aria-label="Color Picker">
+    <section aria-label="Color Picker" className="color-picker-container">
       <label>
         Color Picker:
         <input

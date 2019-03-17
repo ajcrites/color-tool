@@ -32,7 +32,7 @@ export const ColorToolApp = () => {
   };
 
   return (
-    <main className="colors">
+    <main id="color-tool" className="colors">
       <ColorToolContext.Provider value={state}>
         <HexInput />
         <MultiInput parser="rgba" label="RGB(A): " />
@@ -46,10 +46,12 @@ export const ColorToolApp = () => {
           }}
         />
 
+      <section aria-label="hsla color modifiers" className="color-modifiers">
         <HslaModifier label="lighten" hslaIndex={2} amount={10} />
         <HslaModifier label="darken" hslaIndex={2} amount={-10} />
         <HslaModifier label="saturate" hslaIndex={1} amount={10} />
         <HslaModifier label="desaturate" hslaIndex={1} amount={-10} />
+      </section>
       </ColorToolContext.Provider>
     </main>
   );
