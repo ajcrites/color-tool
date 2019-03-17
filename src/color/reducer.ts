@@ -24,7 +24,7 @@ export function colorReducer(
         return {
           rgba,
           hsla,
-          keyword: keyword ? keyword : state.keyword,
+          keyword: keyword ? keyword : '',
           hex: payload,
         };
       }
@@ -67,7 +67,7 @@ export function colorReducer(
             hex,
             hsla,
             rgba,
-            keyword: keyword ? keyword : state.keyword,
+            keyword: keyword ? keyword : '',
             [parser]: color,
           };
         }
