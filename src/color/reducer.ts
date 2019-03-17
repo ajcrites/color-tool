@@ -39,7 +39,7 @@ export function colorReducer(
       const { rgba, hsla, hex, keyword } = parse(payload);
       // keyword comes back no matter what, so we check hex as well to make sure
       // a valid color was provided
-      if (hex && keyword && /[\w-]+/.test(keyword)) {
+      if (hex && keyword && /^[a-z]+$/.test(keyword)) {
         return {
           rgba,
           hsla,
