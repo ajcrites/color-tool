@@ -9,6 +9,7 @@ export interface ColorToolContextProps {
   hex: string;
   rgba: number[] | string[];
   hsla: number[] | string[];
+  keyword: string;
 
   dispatch: Dispatch<ColorToolAction>;
 }
