@@ -20,21 +20,23 @@ export const HexInput = () => {
   };
 
   return (
-    <label>
-      <span className="input-label">Hex:</span>
-      <input
-        className="color-input"
-        type="text"
-        ref={input}
-        value={hex}
-        onChange={onChange}
-        onFocus={onFocus}
-        style={{
-          width: 230,
-          backgroundColor: parse(hex).hex || !hex || hex === '#' ? '' : '#ffb8c2',
-        }}
-      />
+    <section aria-label="Hex">
+      <label>
+        <span className="input-label-text">Hex:</span>
+        <input
+          className="color-input"
+          type="text"
+          ref={input}
+          value={hex}
+          onChange={onChange}
+          onFocus={onFocus}
+          style={{
+            width: 230,
+            backgroundColor: parse(hex).hex || !hex || hex === '#' ? '' : '#ffb8c2',
+          }}
+        />
+      </label>
       <CopyToClipboardButton value={hex} />
-    </label>
+    </section>
   );
 };

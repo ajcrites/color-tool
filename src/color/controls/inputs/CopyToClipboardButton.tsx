@@ -19,7 +19,7 @@ export const CopyToClipboardButton = ({ value }) => {
 
   return display ? (
     <button className="copy-to-clipboard-button" onClick={copyToClipboard}>
-      <img width="16" height="16" src="copy-to-clipboard.svg" />
+      <img width="16" height="16" src="copy-to-clipboard.svg" alt="copy to clipboard" />
     </button>
   ) : null;
 };

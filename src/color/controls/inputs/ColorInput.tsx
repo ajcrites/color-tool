@@ -22,15 +22,17 @@ export const ColorInput = () => {
   };
 
   return show ? (
-    <label>
-      Color Picker:
-      <input
-        style={{ marginLeft: 15 }}
-        type="color"
-        ref={input}
-        value={parse(hex).hex}
-        onChange={onChange}
-      />
-    </label>
+    <section aria-label="Color Picker">
+      <label>
+        Color Picker:
+        <input
+          style={{ marginLeft: 15 }}
+          type="color"
+          ref={input}
+          value={parse(hex).hex}
+          onChange={onChange}
+        />
+      </label>
+    </section>
   ) : null;
 };

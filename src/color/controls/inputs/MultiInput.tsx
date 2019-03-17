@@ -40,24 +40,27 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({ parser, label }
   };
 
   return (
-    <label>
-      <span className="input-label">{label}</span>
-      {inputs.map((input, idx) => (
-        <input
-          className="color-input"
-          type="text"
-          key={idx}
-          ref={input}
-          value={color[idx]}
-          onChange={onChange(idx)}
-          style={{
-            width: 50,
-            marginRight: idx === 3 ? 0 : 10,
-            backgroundColor: !color[idx] || isValidNumber(color[idx] + '') ? '' : '#ffb8c2',
-          }}
-        />
-      ))}
+    <section aria-label={label}>
+      <label>
+        <span className="input-label-text">{label}</span>
+        {inputs.map((input, idx) => (
+          <input
+            className="color-input"
+            type="text"
+            key={idx}
+            ref={input}
+            value={color[idx]}
+            onChange={onChange(idx)}
+            aria-label={`${label}${parser[idx].toUpperCase()}`}
+            style={{
+              width: 50,
+              marginRight: idx === 3 ? 0 : 10,
+              backgroundColor: !color[idx] || isValidNumber(color[idx] + '') ? '' : '#ffb8c2',
+            }}
+          />
+        ))}
+      </label>
       <CopyToClipboardButton value={`${parser}(${color.join()})`} />
-    </label>
+    </section>
   );
 };

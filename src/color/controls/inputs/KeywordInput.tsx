@@ -14,21 +14,24 @@ export const KeywordInput = () => {
   };
 
   return (
-    <label>
-      <span className="input-label">Keyword:</span>
-      <input
-        className="color-input"
-        type="text"
-        ref={input}
-        value={keyword}
-        onChange={onChange}
-        style={{
-          width: 230,
-          backgroundColor: /^[a-z]*$/.test(keyword) ? '' : '#ffb8c2',
-          color: parse(keyword).hex ? '' : '#9FA9A3',
-        }}
-      />
+    <section aria-label="Keyword">
+      <label>
+        <span className="input-label-text">Keyword:</span>
+
+        <input
+          className="color-input"
+          type="text"
+          ref={input}
+          value={keyword}
+          onChange={onChange}
+          style={{
+            width: 230,
+            backgroundColor: /^[a-z]*$/.test(keyword) ? '' : '#ffb8c2',
+            color: parse(keyword).hex ? '' : '#9FA9A3',
+          }}
+        />
+      </label>
       <CopyToClipboardButton value={keyword} />
-    </label>
+    </section>
   );
 };

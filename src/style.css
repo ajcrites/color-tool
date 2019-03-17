@@ -3,12 +3,11 @@ body {
   font-size: 25px;
 }
 
-.colors label {
-  display: block;
+.colors section {
   margin-bottom: 20px;
 }
 
-.input-label {
+.input-label-text {
   width: 120px;
   display: inline-block;
 }
