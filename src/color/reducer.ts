@@ -10,6 +10,7 @@ export type ColorToolState = Pick<
   Exclude<keyof ColorToolContextProps, 'dispatch'>
 >;
 
+// tslint:disable-next-line:cognitive-complexity
 export function colorReducer(
   state: ColorToolState,
   action: ColorToolAction,
@@ -19,10 +20,11 @@ export function colorReducer(
       const { payload } = action;
       // Valid and complete hex color code provided by the payload
       if (payload && /^#(\d|[a-f]){6}$/i.test(payload)) {
-        const { rgba, hsla } = parse(payload);
+        const { rgba, hsla, keyword } = parse(payload);
         return {
           rgba,
           hsla,
+          keyword: keyword ? keyword : '',
           hex: payload,
         };
       }
@@ -32,10 +34,30 @@ export function colorReducer(
       };
     }
 
+    case getType(actions.updateKeyword): {
+      const { payload } = action;
+      const { rgba, hsla, hex, keyword } = parse(payload);
+      // keyword comes back no matter what, so we check hex as well to make sure
+      // a valid color was provided
+      if (hex && keyword && /^[a-z]+$/.test(keyword)) {
+        return {
+          rgba,
+          hsla,
+          hex,
+          keyword: payload,
+        };
+      }
+
+      return {
+        ...state,
+        keyword: payload,
+      };
+    }
+
     case getType(actions.updateMulti): {
       const { parser, value } = action.payload;
       if (value.every(isValidNumber)) {
-        const { hex, rgba, hsla, [parser]: color } = parseAsClamped(
+        const { hex, rgba, hsla, keyword, [parser]: color } = parseAsClamped(
           parser,
           value,
         );
@@ -45,6 +67,7 @@ export function colorReducer(
             hex,
             hsla,
             rgba,
+            keyword: keyword ? keyword : '',
             [parser]: color,
           };
         }
