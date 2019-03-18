@@ -15,12 +15,11 @@ export const ColorTool = () => {
 
   return (
     <Fragment>
-      <div
-        role="document"
-        onClick={toggleCollapse}
-        className={'intro ' + (collapsed ? 'collapsed' : '')}>
+      <div role="document" className={'intro ' + (collapsed ? 'collapsed' : '')}>
         <h1>CSS Color Tool</h1>
-        <a onClick={stopPropagation} href="#color-tool">main</a>
+        <a onClick={stopPropagation} href="#color-tool">
+          main
+        </a>
         <p>
           This CSS color tool allows you to experiment with various different colors and see
           different CSS representations of those colors. Updating any of the input values will
@@ -50,6 +49,12 @@ export const ColorTool = () => {
           There are also buttons available to manipulate the selected color in various ways such as
           ligtening and darkening.
         </p>
+        <button
+          aria-label={collapsed ? 'expand' : 'collapse'}
+          onClick={toggleCollapse}
+          className="collapse-button">
+          {collapsed ? '▼' : '▲'}
+        </button>
       </div>
       <ColorToolApp />
     </Fragment>
