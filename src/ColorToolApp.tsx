@@ -19,11 +19,12 @@ export const ColorToolApp = () => {
   // Default to empty inputs for RGBA / HSLA. Most of the time we want to
   // treat the inputs as numbers. Using a value is required to let React know
   // that the inputs are controlled.
-  const [{ hex, rgba, hsla, keyword }, dispatch] = useReducer(colorReducer, {
+  const [{ hex, rgba, hsla, keyword, hasKeyword }, dispatch] = useReducer(colorReducer, {
     hex: '',
     rgba: ['', '', '', ''],
     hsla: ['', '', '', ''],
     keyword: '',
+    hasKeyword: false,
   });
 
   const state: ColorToolContextProps = {
@@ -31,6 +32,7 @@ export const ColorToolApp = () => {
     rgba,
     hsla,
     keyword,
+    hasKeyword,
 
     dispatch,
   };

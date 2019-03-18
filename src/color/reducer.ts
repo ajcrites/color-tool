@@ -7,7 +7,11 @@
 import { getType } from 'typesafe-actions';
 import parse from 'parse-color';
 
-import { isValidNumber, parseAsClamped } from '~/color-check-util';
+import {
+  isValidNumber,
+  isValidKeyword,
+  parseAsClamped,
+} from '~/color-check-util';
 import { ColorToolAction, ColorToolContextProps } from '~/ColorToolContext';
 import * as actions from './actions';
 
@@ -31,6 +35,7 @@ export function colorReducer(
           rgba,
           hsla,
           keyword: keyword ? keyword : '',
+          hasKeyword: !!keyword,
           hex: payload,
         };
       }
@@ -45,18 +50,20 @@ export function colorReducer(
       const { rgba, hsla, hex, keyword } = parse(payload);
       // keyword comes back no matter what, so we check hex as well to make sure
       // a valid color was provided
-      if (hex && keyword && /^[a-z]+$/.test(keyword)) {
+      if (hex && keyword && isValidKeyword(keyword)) {
         return {
           rgba,
           hsla,
           hex,
           keyword: payload,
+          hasKeyword: true,
         };
       }
 
       return {
         ...state,
         keyword: payload,
+        hasKeyword: false,
       };
     }
 
@@ -74,10 +81,12 @@ export function colorReducer(
             hsla,
             rgba,
             keyword: keyword ? keyword : '',
+            hasKeyword: !!keyword,
             [parser]: color,
           };
         }
       }
+
       return {
         ...state,
         [parser]: value,

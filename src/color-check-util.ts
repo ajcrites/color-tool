@@ -43,3 +43,12 @@ export function clampMultiColor(parser: 'rgba' | 'hsla', values: number[]) {
 export function parseAsClamped(parser, values: number[]) {
   return parse(`${parser}(${clampMultiColor(parser, values)})`);
 }
+
+export function isValidHex(hexValue) {
+  return !hexValue || /^#[a-fA-F0-9]*$/.test(hexValue);
+}
+
+// All keywords are pure lowercase alpha
+export function isValidKeyword(keywordValue) {
+  return !keywordValue || /^[a-z]*$/.test(keywordValue);
+}

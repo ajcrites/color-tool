@@ -3,11 +3,11 @@
  */
 
 import React, { useContext } from 'react';
-import parse from 'parse-color';
 
 import { ColorToolContext } from '~/ColorToolContext';
 import { updateHex } from '~/color/actions';
 import { CopyToClipboardButton } from '~/color/controls/CopyToClipboardButton';
+import { isValidHex } from '~/color-check-util';
 
 export const HexInput = () => {
   const { hex, dispatch } = useContext(ColorToolContext);
@@ -27,14 +27,11 @@ export const HexInput = () => {
       <label className="color-input-label">
         <span className="input-label-text">Hex:</span>
         <input
-          className="color-input"
+          className={'color-input ' + (isValidHex(hex) ? '' : 'invalid')}
           type="text"
           value={hex}
           onChange={onChange}
           onFocus={onFocus}
-          style={{
-            backgroundColor: parse(hex).hex || !hex || hex === '#' ? '' : '#ffb8c2',
-          }}
         />
       </label>
       <CopyToClipboardButton value={hex} />

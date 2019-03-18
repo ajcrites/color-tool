@@ -15,6 +15,9 @@
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
+.color-input.invalid {
+  background-color: #ffb8c2;
+}
 
 .copy-to-clipboard-button {
   border-radius: 10px;

@@ -3,10 +3,10 @@
  */
 
 import React, { useContext, useRef, useEffect, useState } from 'react';
-import parse from 'parse-color';
 
 import { ColorToolContext } from '~/ColorToolContext';
 import { updateHex } from '~/color/actions';
+import { isValidHex } from '~/color-check-util';
 
 export const ColorInput = () => {
   const { hex, dispatch } = useContext(ColorToolContext);
@@ -33,7 +33,7 @@ export const ColorInput = () => {
           style={{ marginLeft: 15 }}
           type="color"
           ref={input}
-          value={parse(hex).hex}
+          value={hex && isValidHex(hex) ? hex : null}
           onChange={onChange}
         />
       </label>
