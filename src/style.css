@@ -6,3 +6,12 @@ body {
 .colors section {
   margin-bottom: 20px;
 }
+
+.color-display {
+  margin-bottom: 25px;
+  margin-left: 25px;
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  transition: background-color 1s;
+}

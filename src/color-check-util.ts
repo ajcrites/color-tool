@@ -15,6 +15,7 @@ export function clampMultiColorValue(parser: 'rgba' | 'hsla', value, idx) {
   let maxClamp;
   let inputValue;
 
+  // Clamp value based on parser and position
   if (parser === 'rgba' && idx < 3) {
     maxClamp = 255;
   } else if (parser === 'hsla' && idx === 0) {
@@ -25,6 +26,7 @@ export function clampMultiColorValue(parser: 'rgba' | 'hsla', value, idx) {
     maxClamp = 1;
   }
 
+  // First three values are whole numbers, but alpha is between 0 and 1
   if (idx < 3) {
     inputValue = Math.round(value);
   } else {
