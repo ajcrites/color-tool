@@ -37,7 +37,7 @@ export function colorReducer(
       const { payload } = action;
       let nextState = {};
       // Valid and complete hex color code provided by the payload
-      if (payload && /^#(\d|[a-f]){6}$/i.test(payload)) {
+      if (payload && /^#[a-f0-9]{6}$/i.test(payload)) {
         nextState = createStateFromParsedColor(parse(payload));
       }
 
