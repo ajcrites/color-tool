@@ -16,6 +16,7 @@ export const ColorInput = () => {
   const [show, setShow] = useState(true);
   useEffect(() => {
     input.current.value = '!';
+    // istanbul ignore next -- jest uses input[type=color] properly
     if ('!' === input.current.value) {
       setShow(false);
     }
@@ -33,7 +34,8 @@ export const ColorInput = () => {
           style={{ marginLeft: 15 }}
           type="color"
           ref={input}
-          value={hex && isValidHex(hex) ? hex : null}
+          // any invalid value sets value to hex black
+          value={hex && isValidHex(hex) ? hex : '#000000'}
           onChange={onChange}
         />
       </label>

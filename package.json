@@ -37,6 +37,7 @@
     "parcel-bundler": "1.12.2",
     "parcel-plugin-static-files-copy": "2.0.0",
     "prettier": "1.16.4",
+    "react-testing-library": "^6.0.0",
     "ts-config-mobiquity-react-native": "5.0.0",
     "ts-jest": "^24.0.0",
     "tslint": "5.14.0",
