@@ -69,14 +69,7 @@ export function colorReducer(
       const { parser, value } = action.payload;
       let nextState = { [parser]: value };
       if (value.every(isValidNumber)) {
-        const { [parser]: color, ...parsed } = parseAsClamped(parser, value);
-
-        if (color && !color.some(isNaN)) {
-          nextState = {
-            ...createStateFromParsedColor({ ...parsed, [parser]: color }),
-            [parser]: color,
-          };
-        }
+        nextState = createStateFromParsedColor(parseAsClamped(parser, value));
       }
 
       return {
