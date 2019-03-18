@@ -6,6 +6,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "test": "yarn lint && jest",
     "lint": "tsc && tslint --project tsconfig.json"
   },
   "lint-staged": {
@@ -17,7 +18,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && yarn lint"
+      "pre-commit": "lint-staged && yarn test"
     }
   },
   "dependencies": {
