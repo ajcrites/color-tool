@@ -15,16 +15,18 @@ export function clampMultiColorValue(parser: 'rgba' | 'hsla', value, idx) {
   let maxClamp;
   let inputValue;
 
+  // Clamp value based on parser and position
   if (parser === 'rgba' && idx < 3) {
     maxClamp = 255;
   } else if (parser === 'hsla' && idx === 0) {
-    maxClamp = 360;
+    maxClamp = 359;
   } else if (parser === 'hsla' && idx > 0 && idx < 3) {
     maxClamp = 100;
   } else {
     maxClamp = 1;
   }
 
+  // First three values are whole numbers, but alpha is between 0 and 1
   if (idx < 3) {
     inputValue = Math.round(value);
   } else {
@@ -34,10 +36,23 @@ export function clampMultiColorValue(parser: 'rgba' | 'hsla', value, idx) {
   return Math.min(maxClamp, Math.max(0, inputValue));
 }
 
+// Clamp an array of multi-color values
 export function clampMultiColor(parser: 'rgba' | 'hsla', values: number[]) {
   return values.map((value, idx) => clampMultiColorValue(parser, value, idx));
 }
 
+// Parse color from provided values that are clamped
 export function parseAsClamped(parser, values: number[]) {
   return parse(`${parser}(${clampMultiColor(parser, values)})`);
+}
+
+// Determine whether the input is valid. An empty string or any partial hex
+// value will be valid.
+export function isValidHex(hexValue) {
+  return !hexValue || /^#[a-f0-9]*$/i.test(hexValue);
+}
+
+// Determine whether the input is valid. All keywords are pure lowercase alpha.
+export function isValidKeyword(keywordValue) {
+  return !keywordValue || /^[a-z]*$/.test(keywordValue);
 }

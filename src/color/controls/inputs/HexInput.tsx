@@ -1,13 +1,16 @@
-import React, { useContext, useRef } from 'react';
-import parse from 'parse-color';
+/**
+ * Input that handles hex color code input (#abcdef)
+ */
+
+import React, { useContext } from 'react';
 
 import { ColorToolContext } from '~/ColorToolContext';
 import { updateHex } from '~/color/actions';
-import { CopyToClipboardButton } from './CopyToClipboardButton';
+import { CopyToClipboardButton } from '~/color/controls/CopyToClipboardButton';
+import { isValidHex } from '~/color-check-util';
 
 export const HexInput = () => {
   const { hex, dispatch } = useContext(ColorToolContext);
-  const input = useRef(null);
 
   const onChange = ({ target: { value } }) => {
     dispatch(updateHex(value));
@@ -20,21 +23,18 @@ export const HexInput = () => {
   };
 
   return (
-    <label>
-      <span className="input-label">Hex:</span>
-      <input
-        className="color-input"
-        type="text"
-        ref={input}
-        value={hex}
-        onChange={onChange}
-        onFocus={onFocus}
-        style={{
-          width: 230,
-          backgroundColor: parse(hex).hex || !hex || hex === '#' ? '' : '#ffb8c2',
-        }}
-      />
+    <section aria-label="Hex" className="color-input-container">
+      <label className="color-input-label">
+        <span className="input-label-text">Hex:</span>
+        <input
+          className={'color-input ' + (isValidHex(hex) ? '' : 'invalid')}
+          type="text"
+          value={hex}
+          onChange={onChange}
+          onFocus={onFocus}
+        />
+      </label>
       <CopyToClipboardButton value={hex} />
-    </label>
+    </section>
   );
 };

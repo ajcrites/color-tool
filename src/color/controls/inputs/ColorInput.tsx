@@ -1,8 +1,12 @@
+/**
+ * Color picker input (input type=color) for interacting with the color tool app
+ */
+
 import React, { useContext, useRef, useEffect, useState } from 'react';
-import parse from 'parse-color';
 
 import { ColorToolContext } from '~/ColorToolContext';
 import { updateHex } from '~/color/actions';
+import { isValidHex } from '~/color-check-util';
 
 export const ColorInput = () => {
   const { hex, dispatch } = useContext(ColorToolContext);
@@ -22,15 +26,17 @@ export const ColorInput = () => {
   };
 
   return show ? (
-    <label>
-      Color Picker:
-      <input
-        style={{ marginLeft: 15 }}
-        type="color"
-        ref={input}
-        value={parse(hex).hex}
-        onChange={onChange}
-      />
-    </label>
+    <section aria-label="Color Picker" className="color-picker-container">
+      <label>
+        Color Picker:
+        <input
+          style={{ marginLeft: 15 }}
+          type="color"
+          ref={input}
+          value={hex && isValidHex(hex) ? hex : null}
+          onChange={onChange}
+        />
+      </label>
+    </section>
   ) : null;
 };

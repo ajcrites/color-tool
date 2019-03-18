@@ -1,3 +1,7 @@
+/**
+ * Button that copies the provided value to clipboard
+ */
+
 import React, { useState, useEffect } from 'react';
 
 export const CopyToClipboardButton = ({ value }) => {
@@ -19,7 +23,7 @@ export const CopyToClipboardButton = ({ value }) => {
 
   return display ? (
     <button className="copy-to-clipboard-button" onClick={copyToClipboard}>
-      <img width="16" height="16" src="copy-to-clipboard.svg" />
+      <img width="16" height="16" src="copy-to-clipboard.svg" alt="copy to clipboard" />
     </button>
   ) : null;
 };
