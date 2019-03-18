@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext } from 'react';
 import parse from 'parse-color';
 
 import { ColorToolContext } from '~/ColorToolContext';
@@ -7,7 +7,6 @@ import { CopyToClipboardButton } from '~/color/controls/CopyToClipboardButton';
 
 export const HexInput = () => {
   const { hex, dispatch } = useContext(ColorToolContext);
-  const input = useRef(null);
 
   const onChange = ({ target: { value } }) => {
     dispatch(updateHex(value));
@@ -26,7 +25,6 @@ export const HexInput = () => {
         <input
           className="color-input"
           type="text"
-          ref={input}
           value={hex}
           onChange={onChange}
           onFocus={onFocus}

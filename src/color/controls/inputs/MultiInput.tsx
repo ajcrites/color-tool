@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState, FunctionComponent } from 'react';
+import React, { useContext, useRef, FunctionComponent } from 'react';
 import parse from 'parse-color';
 
 import { ColorToolContext } from '~/ColorToolContext';
@@ -13,10 +13,9 @@ export interface MultiInputProps {
 
 export const MultiInput: FunctionComponent<MultiInputProps> = ({ parser, label }) => {
   const { [parser]: color, dispatch } = useContext(ColorToolContext);
-  const [inputValidity, setInputValidity] = useState([true, true, true, true]);
   const inputs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
-  const onChange = changedIdx => ({ target: { value } }) => {
+  const onChange = () => ({ target: { value } }) => {
     // Get values of all current inputs. The input we are updating should
     // yield a new value based on user input.
     const currentColorValues = inputs.map(({ current: { value } }) => value);
@@ -25,17 +24,8 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({ parser, label }
     const parsedFromInput = parse(value);
     if (parsedFromInput[parser]) {
       dispatch(updateMulti(parser, parsedFromInput[parser]));
-      setInputValidity([true, true, true, true]);
     } else {
       dispatch(updateMulti(parser, currentColorValues));
-
-      // Treat '0.' as invalid to guide users to add a number after the decimal
-      if (isNaN(Math.max(0, value))) {
-        inputValidity[changedIdx] = false;
-      } else {
-        inputValidity[changedIdx] = true;
-      }
-      setInputValidity(inputValidity);
     }
   };
 
@@ -51,7 +41,7 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({ parser, label }
               key={idx}
               ref={input}
               value={color[idx]}
-              onChange={onChange(idx)}
+              onChange={onChange()}
               aria-label={`${label}${parser[idx].toUpperCase()}`}
               style={{
                 width: 50,

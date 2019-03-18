@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext } from 'react';
 import parse from 'parse-color';
 
 import { ColorToolContext } from '~/ColorToolContext';
@@ -7,7 +7,6 @@ import { CopyToClipboardButton } from '~/color/controls/CopyToClipboardButton';
 
 export const KeywordInput = () => {
   const { keyword, dispatch } = useContext(ColorToolContext);
-  const input = useRef(null);
 
   const onChange = ({ target: { value } }) => {
     dispatch(updateKeyword(value));
@@ -21,7 +20,6 @@ export const KeywordInput = () => {
         <input
           className="color-input"
           type="text"
-          ref={input}
           value={keyword}
           onChange={onChange}
           style={{
