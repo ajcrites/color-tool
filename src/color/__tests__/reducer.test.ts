@@ -3,6 +3,22 @@ import * as actions from '../actions';
 
 // tslint:disable:no-big-function
 describe('colorReducer', () => {
+  test('return default state for unknown action', () => {
+    const currentState = {
+      rgba: [240, 230, 140, 1],
+      hsla: [54, 77, 75, 1],
+      hex: '#f0e68c',
+      keyword: 'khaki',
+      hasKeyword: true,
+    };
+
+    const nextState = colorReducer(currentState, {
+      type: 'not an action',
+    } as any);
+
+    expect(nextState).toBe(currentState);
+  });
+
   describe('hex', () => {
     test('update rgba and hsla from valid hex', () => {
       const testHex = '#abcdef';
