@@ -3,7 +3,7 @@ import parse from 'parse-color';
 
 import { ColorToolContext } from '~/ColorToolContext';
 import { updateHex } from '~/color/actions';
-import { CopyToClipboardButton } from './CopyToClipboardButton';
+import { CopyToClipboardButton } from '~/color/controls/CopyToClipboardButton';
 
 export const HexInput = () => {
   const { hex, dispatch } = useContext(ColorToolContext);

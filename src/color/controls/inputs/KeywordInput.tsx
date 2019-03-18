@@ -3,7 +3,7 @@ import parse from 'parse-color';
 
 import { ColorToolContext } from '~/ColorToolContext';
 import { updateKeyword } from '~/color/actions';
-import { CopyToClipboardButton } from './CopyToClipboardButton';
+import { CopyToClipboardButton } from '~/color/controls/CopyToClipboardButton';
 
 export const KeywordInput = () => {
   const { keyword, dispatch } = useContext(ColorToolContext);

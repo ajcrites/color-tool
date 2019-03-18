@@ -6,7 +6,7 @@
 import React, { useState, Fragment } from 'react';
 
 import { ColorToolApp } from './ColorToolApp';
-import { CopyToClipboardButton } from '~/color/controls/inputs/CopyToClipboardButton';
+import { CopyToClipboardButton } from '~/color/controls/CopyToClipboardButton';
 
 export const ColorTool = () => {
   const [collapsed, setCollapsed] = useState(true);

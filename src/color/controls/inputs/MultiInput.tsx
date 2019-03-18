@@ -4,7 +4,7 @@ import parse from 'parse-color';
 import { ColorToolContext } from '~/ColorToolContext';
 import { updateMulti } from '~/color/actions';
 import { isValidNumber } from '~/color-check-util';
-import { CopyToClipboardButton } from './CopyToClipboardButton';
+import { CopyToClipboardButton } from '~/color/controls/CopyToClipboardButton';
 
 export interface MultiInputProps {
   parser: 'rgba' | 'hsla';
