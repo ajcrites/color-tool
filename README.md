@@ -14,5 +14,5 @@ Create a Netlify account -- you will need a netlify token. Optionally you can
 point this to your own domain via the `site_name` variable or omit it. Then you
 can deploy the app to Netlify with Terraform:
 
-    terraform plan -var netlify_token=$TOKEN -var app_name=$APP_NAME -out times-tables.tfplan
-    terraform apply times-tables.tfplan
+    terraform plan -var netlify_token=$TOKEN -var app_name=$APP_NAME -out color-tool.tfplan
+    terraform apply color-tool.tfplan
