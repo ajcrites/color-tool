@@ -1,3 +1,9 @@
+/**
+ * Button that modifies the HSL value (and hence all values).
+ * It's simple to update hsl values such as the saturation and lightness of
+ * a color
+ */
+
 import React, { useContext } from 'react';
 
 import { ColorToolContext } from '~/ColorToolContext';

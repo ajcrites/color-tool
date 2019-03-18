@@ -1,3 +1,7 @@
+/**
+ * Color Tool application container
+ */
+
 import React, { useReducer } from 'react';
 
 import { ColorToolContextProps, ColorToolContext } from '~/ColorToolContext';

@@ -1,3 +1,8 @@
+/**
+ * Component for managing colors constructed from multiple parts
+ * This applies to the rgba and hsla inputs specifically
+ */
+
 import React, { useContext, useRef, FunctionComponent } from 'react';
 import parse from 'parse-color';
 

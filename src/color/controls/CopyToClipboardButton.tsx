@@ -1,3 +1,7 @@
+/**
+ * Button that copies the provided value to clipboard
+ */
+
 import React, { useState, useEffect } from 'react';
 
 export const CopyToClipboardButton = ({ value }) => {

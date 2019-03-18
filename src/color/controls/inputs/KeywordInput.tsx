@@ -1,3 +1,7 @@
+/**
+ * Input that handles a css keyword for colors
+ */
+
 import React, { useContext } from 'react';
 import parse from 'parse-color';
 
@@ -23,6 +27,7 @@ export const KeywordInput = () => {
           value={keyword}
           onChange={onChange}
           style={{
+            /* All CSS color keywords are pure lowercase alpha */
             backgroundColor: /^[a-z]*$/.test(keyword) ? '' : '#ffb8c2',
             color: parse(keyword).hex ? '' : '#9FA9A3',
           }}

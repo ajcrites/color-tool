@@ -1,3 +1,7 @@
+/**
+ * Input that handles hex color code input (#abcdef)
+ */
+
 import React, { useContext } from 'react';
 import parse from 'parse-color';
 

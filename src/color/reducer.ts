@@ -1,3 +1,9 @@
+/**
+ * reducer for updating color values based on updates to a particular
+ * color type. Color types (hex, hsla, rgba, keyword) are updated, and
+ * corresponding valid updates are propagated to the other color types
+ */
+
 import { getType } from 'typesafe-actions';
 import parse from 'parse-color';
 

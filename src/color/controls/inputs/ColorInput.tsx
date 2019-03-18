@@ -1,3 +1,7 @@
+/**
+ * Color picker input (input type=color) for interacting with the color tool app
+ */
+
 import React, { useContext, useRef, useEffect, useState } from 'react';
 import parse from 'parse-color';
 

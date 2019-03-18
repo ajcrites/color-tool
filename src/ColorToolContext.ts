@@ -1,3 +1,7 @@
+/**
+ * Context for managing state of the color tool app
+ */
+
 import { createContext, Dispatch } from 'react';
 import { ActionType } from 'typesafe-actions';
 
