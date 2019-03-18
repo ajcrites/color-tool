@@ -26,14 +26,18 @@ body {
 
 .copy-to-clipboard-button {
   border-radius: 10px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  height: 40px;
   vertical-align: middle;
   background-color: #37f244;
   cursor: pointer;
   border: 1px solid rgba(0,0,0,.2);
+  padding: 5px;
+}
+.color-input-container .copy-to-clipboard-button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  height: 40px;
   border-left: 0;
+  padding: auto;
 }
 
 .color-display {
@@ -110,4 +114,22 @@ body {
     display: flex;
     justify-content: center;
   }
+}
+
+.intro {
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid black;
+  margin-top: 0;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.intro h1 {
+  margin: 0;
+}
+
+.intro.collapsed {
+  overflow: hidden;
+  height: 150;
+  box-shadow: inset 0 -30px 30px -10px rgba(230, 230, 230, 1)
 }
