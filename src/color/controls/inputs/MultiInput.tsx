@@ -25,10 +25,10 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({ parser, label }
     // yield a new value based on user input.
     const currentColorValues = inputs.map(({ current: { value } }) => value);
 
-    // Check whether one of the inputs has a valid rgb(a)/hsl(a) string to parse
-    const parsedFromInput = parse(value);
-    if (parsedFromInput[parser]) {
-      dispatch(updateMulti(parser, parsedFromInput[parser]));
+    // Check whether the updated input has a valid color string to parse
+    const { [parser]: parsedFromInput } = parse(value);
+    if (parsedFromInput && !parsedFromInput.some(isNaN)) {
+      dispatch(updateMulti(parser, parsedFromInput));
     } else {
       dispatch(updateMulti(parser, currentColorValues));
     }
