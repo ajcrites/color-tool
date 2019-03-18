@@ -1,0 +1,25 @@
+.intro {
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid black;
+  margin-top: 0;
+  margin-bottom: 20px;
+  position: relative;
+}
+.intro h1 {
+  margin: 0;
+}
+
+.intro.collapsed {
+  overflow: hidden;
+  height: 150px;
+}
+
+.collapse-button {
+  position: absolute;
+  width: 100%;
+  background-color: #D2D1DE;
+  bottom: 0;
+  left: 0;
+  cursor: pointer;
+}

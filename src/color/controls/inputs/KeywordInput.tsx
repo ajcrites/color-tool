@@ -25,7 +25,6 @@ export const KeywordInput = () => {
           value={keyword}
           onChange={onChange}
           style={{
-            width: 230,
             backgroundColor: /^[a-z]*$/.test(keyword) ? '' : '#ffb8c2',
             color: parse(keyword).hex ? '' : '#9FA9A3',
           }}
