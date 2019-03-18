@@ -20,7 +20,14 @@ export type ColorToolState = Pick<
   Exclude<keyof ColorToolContextProps, 'dispatch'>
 >;
 
-// tslint:disable-next-line:cognitive-complexity
+export const createStateFromParsedColor = ({ hex, hsla, rgba, keyword }) => ({
+  hex,
+  hsla,
+  rgba,
+  keyword: keyword ? keyword : '',
+  hasKeyword: !!keyword,
+});
+
 export function colorReducer(
   state: ColorToolState,
   action: ColorToolAction,
@@ -28,60 +35,45 @@ export function colorReducer(
   switch (action.type) {
     case getType(actions.updateHex): {
       const { payload } = action;
+      let nextState = {};
       // Valid and complete hex color code provided by the payload
       if (payload && /^#(\d|[a-f]){6}$/i.test(payload)) {
-        const { rgba, hsla, keyword } = parse(payload);
-        return {
-          rgba,
-          hsla,
-          keyword: keyword ? keyword : '',
-          hasKeyword: !!keyword,
-          hex: payload,
-        };
+        nextState = createStateFromParsedColor(parse(payload));
       }
+
       return {
         ...state,
+        ...nextState,
         hex: payload,
       };
     }
 
     case getType(actions.updateKeyword): {
       const { payload } = action;
-      const { rgba, hsla, hex, keyword } = parse(payload);
+      const { hex, keyword, ...parsed } = parse(payload);
+      let nextState = { hasKeyword: false };
       // keyword comes back no matter what, so we check hex as well to make sure
       // a valid color was provided
       if (hex && keyword && isValidKeyword(keyword)) {
-        return {
-          rgba,
-          hsla,
-          hex,
-          keyword: payload,
-          hasKeyword: true,
-        };
+        nextState = createStateFromParsedColor({ ...parsed, keyword, hex });
       }
 
       return {
         ...state,
+        ...nextState,
         keyword: payload,
-        hasKeyword: false,
       };
     }
 
     case getType(actions.updateMulti): {
       const { parser, value } = action.payload;
+      let nextState = { [parser]: value };
       if (value.every(isValidNumber)) {
-        const { hex, rgba, hsla, keyword, [parser]: color } = parseAsClamped(
-          parser,
-          value,
-        );
+        const { [parser]: color, ...parsed } = parseAsClamped(parser, value);
 
         if (color && !color.some(isNaN)) {
-          return {
-            hex,
-            hsla,
-            rgba,
-            keyword: keyword ? keyword : '',
-            hasKeyword: !!keyword,
+          nextState = {
+            ...createStateFromParsedColor({ ...parsed, [parser]: color }),
             [parser]: color,
           };
         }
@@ -89,7 +81,7 @@ export function colorReducer(
 
       return {
         ...state,
-        [parser]: value,
+        ...nextState,
       };
     }
 

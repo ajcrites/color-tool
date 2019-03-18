@@ -41,7 +41,9 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({ parser, label }
         <div className="multi-input-container">
           {inputs.map((input, idx) => (
             <input
-              className="color-input"
+              className={
+                'color-input ' + (!color[idx] || isValidNumber(color[idx] + '') ? '' : 'invalid')
+              }
               type="text"
               key={idx}
               ref={input}
@@ -51,7 +53,6 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({ parser, label }
               style={{
                 width: 50,
                 marginRight: idx === 3 ? 0 : 10,
-                backgroundColor: !color[idx] || isValidNumber(color[idx] + '') ? '' : '#ffb8c2',
               }}
             />
           ))}
