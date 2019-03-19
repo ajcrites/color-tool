@@ -20,7 +20,7 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({ parser, label }
   const { [parser]: color, dispatch } = useContext(ColorToolContext);
   const inputs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
-  const onChange = () => ({ target: { value } }) => {
+  const onChange = ({ target: { value } }) => {
     // Get values of all current inputs. The input we are updating should
     // yield a new value based on user input.
     const currentColorValues = inputs.map(({ current: { value } }) => value);
@@ -48,11 +48,11 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({ parser, label }
               key={idx}
               ref={input}
               value={color[idx]}
-              onChange={onChange()}
+              onChange={onChange}
               aria-label={`${label}${parser[idx].toUpperCase()}`}
               style={{
                 width: 50,
-                marginRight: idx === 3 ? 0 : 10,
+                marginRight: idx === inputs.length - 1 ? 0 : 10,
               }}
             />
           ))}
