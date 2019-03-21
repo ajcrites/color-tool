@@ -12,11 +12,11 @@ describe('HexInput component', () => {
     const state: any = {
       dispatch: jest.fn(),
     };
-    const { container } = render((
+    const { container } = render(
       <ColorToolContext.Provider value={state}>
         <HexInput />
-      </ColorToolContext.Provider>
-    ));
+      </ColorToolContext.Provider>,
+    );
     const input = container.querySelector('input');
 
     fireEvent.focus(input);
@@ -29,11 +29,11 @@ describe('HexInput component', () => {
     const state: any = {
       hex: 'A7& -',
     };
-    const { container } = render((
+    const { container } = render(
       <ColorToolContext.Provider value={state}>
         <HexInput />
-      </ColorToolContext.Provider>
-    ));
+      </ColorToolContext.Provider>,
+    );
     const input = container.querySelector('input');
 
     expect(input.classList).toContain('invalid');
@@ -44,11 +44,11 @@ describe('HexInput component', () => {
     const state: any = {
       dispatch: jest.fn(),
     };
-    const { container } = render((
+    const { container } = render(
       <ColorToolContext.Provider value={state}>
         <HexInput />
-      </ColorToolContext.Provider>
-    ));
+      </ColorToolContext.Provider>,
+    );
     const input = container.querySelector('input');
 
     fireEvent.change(input, { target: { value: testHex } });

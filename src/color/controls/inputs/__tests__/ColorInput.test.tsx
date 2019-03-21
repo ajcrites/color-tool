@@ -10,11 +10,11 @@ describe('ColorInput component', () => {
 
   test('show color input when supported', () => {
     const state: any = {};
-    const { container } = render((
+    const { container } = render(
       <ColorToolContext.Provider value={state}>
         <ColorInput />
-      </ColorToolContext.Provider>
-    ));
+      </ColorToolContext.Provider>,
+    );
 
     expect(container).toBeTruthy();
   });
@@ -23,11 +23,11 @@ describe('ColorInput component', () => {
     const state: any = {
       hex: 'A7& -',
     };
-    const { container } = render((
+    const { container } = render(
       <ColorToolContext.Provider value={state}>
         <ColorInput />
-      </ColorToolContext.Provider>
-    ));
+      </ColorToolContext.Provider>,
+    );
     const input = container.querySelector('input');
 
     expect(input.value).toBe('#000000');
@@ -38,11 +38,11 @@ describe('ColorInput component', () => {
     const state: any = {
       dispatch: jest.fn(),
     };
-    const { container } = render((
+    const { container } = render(
       <ColorToolContext.Provider value={state}>
         <ColorInput />
-      </ColorToolContext.Provider>
-    ));
+      </ColorToolContext.Provider>,
+    );
     const input = container.querySelector('input');
 
     fireEvent.change(input, { target: { value: testHex } });

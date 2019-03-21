@@ -16,7 +16,10 @@ export interface MultiInputProps {
   label: string;
 }
 
-export const MultiInput: FunctionComponent<MultiInputProps> = ({ parser, label }) => {
+export const MultiInput: FunctionComponent<MultiInputProps> = ({
+  parser,
+  label,
+}) => {
   const { [parser]: color, dispatch } = useContext(ColorToolContext);
   const inputs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
@@ -42,7 +45,8 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({ parser, label }
           {inputs.map((input, idx) => (
             <input
               className={
-                'color-input ' + (!color[idx] || isValidNumber(color[idx] + '') ? '' : 'invalid')
+                'color-input ' +
+                (!color[idx] || isValidNumber(color[idx] + '') ? '' : 'invalid')
               }
               type="text"
               key={idx}

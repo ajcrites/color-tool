@@ -12,8 +12,9 @@ export const CopyToClipboardButton = ({ value }) => {
     (async () => {
       try {
         setDisplay(
-          (await (navigator as any).permissions.query({ name: 'clipboard-write' })).state ===
-            'granted',
+          (await (navigator as any).permissions.query({
+            name: 'clipboard-write',
+          })).state === 'granted',
         );
       } catch {}
     })();
@@ -23,7 +24,12 @@ export const CopyToClipboardButton = ({ value }) => {
 
   return display ? (
     <button className="copy-to-clipboard-button" onClick={copyToClipboard}>
-      <img width="16" height="16" src="copy-to-clipboard.svg" alt="copy to clipboard" />
+      <img
+        width="16"
+        height="16"
+        src="copy-to-clipboard.svg"
+        alt="copy to clipboard"
+      />
     </button>
   ) : null;
 };

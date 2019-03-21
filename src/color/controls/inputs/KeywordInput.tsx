@@ -22,7 +22,9 @@ export const KeywordInput = () => {
         <span className="input-label-text">Keyword:</span>
 
         <input
-          className={'color-input ' + (isValidKeyword(keyword) ? '' : ' invalid')}
+          className={
+            'color-input ' + (isValidKeyword(keyword) ? '' : ' invalid')
+          }
           type="text"
           value={keyword}
           onChange={onChange}
