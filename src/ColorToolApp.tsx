@@ -56,10 +56,14 @@ export const ColorToolApp = () => {
         />
 
         <section aria-label="hsla color modifiers" className="color-modifiers">
-          <HslaModifier label="lighten" hslaIndex={2} amount={10} />
-          <HslaModifier label="darken" hslaIndex={2} amount={-10} />
-          <HslaModifier label="saturate" hslaIndex={1} amount={10} />
-          <HslaModifier label="desaturate" hslaIndex={1} amount={-10} />
+          <div>
+            <HslaModifier label="lighten" hslaIndex={2} amount={10} />
+            <HslaModifier label="darken" hslaIndex={2} amount={-10} />
+          </div>
+          <div>
+            <HslaModifier label="saturate" hslaIndex={1} amount={10} />
+            <HslaModifier label="desaturate" hslaIndex={1} amount={-10} />
+          </div>
         </section>
       </ColorToolContext.Provider>
     </main>

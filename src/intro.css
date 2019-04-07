@@ -6,12 +6,17 @@
   margin-bottom: 20px;
   position: relative;
 }
-.intro h1 {
+.title {
   margin: 0;
+  font-size: 40px;
 }
 
-.intro.collapsed {
-  overflow: hidden;
+.intro-container {
+  position: relative;
+}
+
+.collapsed .intro {
+  overflow: scroll;
   height: 150px;
 }
 
