@@ -27,6 +27,7 @@ export const HexInput = () => {
       <label className="color-input-label">
         <span className="input-label-text">Hex:</span>
         <input
+          autoCapitalize="none"
           className={'color-input ' + (isValidHex(hex) ? '' : 'invalid')}
           type="text"
           value={hex}
