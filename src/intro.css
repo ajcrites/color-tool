@@ -17,7 +17,7 @@
 
 .collapsed .intro {
   overflow: scroll;
-  height: 150px;
+  height: 180px;
 }
 
 .collapse-button {
@@ -27,4 +27,12 @@
   bottom: 0;
   left: 0;
   cursor: pointer;
+  margin: 0;
+  border: 0;
+}
+
+@media screen and (max-width: 500px) {
+  .collapse-button {
+    height: 40px;
+  }
 }
