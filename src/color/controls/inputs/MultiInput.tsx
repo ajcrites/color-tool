@@ -39,15 +39,19 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({
 
   return (
     <section aria-label={label} className="color-input-container">
-      <label className="color-input-label">
-        <span className="input-label-text">{label}</span>
+      <div className="color-input-label">
+        <span className="input-label-text">
+          <label htmlFor={`${parser}-0`}>{label}</label>
+        </span>
         <div className="multi-input-container">
           {inputs.map((input, idx) => (
             <input
+              autoCapitalize="none"
               className={
                 'color-input ' +
                 (!color[idx] || isValidNumber(color[idx] + '') ? '' : 'invalid')
               }
+              id={`${parser}-${idx}`}
               type="text"
               key={idx}
               ref={input}
@@ -60,9 +64,9 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({
               }}
             />
           ))}
+          <CopyToClipboardButton value={`${parser}(${color.join()})`} />
         </div>
-      </label>
-      <CopyToClipboardButton value={`${parser}(${color.join()})`} />
+      </div>
     </section>
   );
 };

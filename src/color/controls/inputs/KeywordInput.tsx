@@ -22,6 +22,7 @@ export const KeywordInput = () => {
         <span className="input-label-text">Keyword:</span>
 
         <input
+          autoCapitalize="none"
           className={
             'color-input ' + (isValidKeyword(keyword) ? '' : ' invalid')
           }
