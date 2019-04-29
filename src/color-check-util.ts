@@ -7,11 +7,17 @@ import parse from 'parse-color';
  * from strings that do not match this regex, e.g. `'1a'` will be parsed as
  * `1`, but we only want to parse strictly numeric values and pass others through
  */
-export function isValidNumber(value: string) {
-  return /(^-?\d+(\.\d+)?$)|^\.\d+$/.test(value);
+export function isValidNumber(value: string | number) {
+  return (
+    Number.isFinite(+value) || /(^-?\d+(\.\d+)?$)|^\.\d+$/.test(value as string)
+  );
 }
 
-export function clampMultiColorValue(parser: 'rgba' | 'hsla', value, idx) {
+export function clampMultiColorValue(
+  parser: 'rgba' | 'hsla',
+  value: number,
+  idx: number,
+) {
   let maxClamp;
   let inputValue;
 
@@ -42,17 +48,17 @@ export function clampMultiColor(parser: 'rgba' | 'hsla', values: number[]) {
 }
 
 // Parse color from provided values that are clamped
-export function parseAsClamped(parser, values: number[]) {
+export function parseAsClamped(parser: 'hsla' | 'rgba', values: number[]) {
   return parse(`${parser}(${clampMultiColor(parser, values)})`);
 }
 
 // Determine whether the input is valid. An empty string or any partial hex
 // value will be valid.
-export function isValidHex(hexValue) {
+export function isValidHex(hexValue: string) {
   return !hexValue || /^#[a-f0-9]*$/i.test(hexValue);
 }
 
 // Determine whether the input is valid. All keywords are pure lowercase alpha.
-export function isValidKeyword(keywordValue) {
+export function isValidKeyword(keywordValue: string) {
   return !keywordValue || /^[a-z]*$/.test(keywordValue);
 }

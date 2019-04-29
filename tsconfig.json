@@ -1,5 +1,5 @@
 {
-  "extends": "./node_modules/ts-config-mobiquity-react-native/tsconfig.json",
+  "extends": "ts-config-mobiquity-react-native",
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {

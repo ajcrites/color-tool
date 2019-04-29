@@ -22,7 +22,7 @@ export const ColorInput = () => {
     }
   }, []);
 
-  const onChange = ({ target: { value } }) => {
+  const onChange = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(updateHex(value));
   };
 

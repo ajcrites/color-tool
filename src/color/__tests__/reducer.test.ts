@@ -1,7 +1,9 @@
-import { colorReducer } from '../reducer';
 import * as actions from '../actions';
+import { colorReducer } from '../reducer';
 
 // tslint:disable:no-big-function
+// tslint:disable:no-any
+//
 describe('colorReducer', () => {
   test('return default state for unknown action', () => {
     const currentState = {
@@ -164,7 +166,7 @@ describe('colorReducer', () => {
 
       const nextState = colorReducer(
         currentState,
-        actions.updateMulti('rgba', testRgba),
+        actions.updateMulti('rgba', testRgba as any),
       );
 
       expect(nextState).toEqual({
@@ -202,7 +204,7 @@ describe('colorReducer', () => {
 
       const nextState = colorReducer(
         currentState,
-        actions.updateMulti('hsla', testHsla),
+        actions.updateMulti('hsla', testHsla as any),
       );
 
       expect(nextState).toEqual({
@@ -223,7 +225,7 @@ describe('colorReducer', () => {
 
       const nextState = colorReducer(
         currentState,
-        actions.updateMulti('hsla', testHsla),
+        actions.updateMulti('hsla', testHsla as any),
       );
 
       expect(nextState).toEqual({

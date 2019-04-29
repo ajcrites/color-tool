@@ -11,7 +11,7 @@ import { CopyToClipboardButton } from '~/color/controls/CopyToClipboardButton';
 export const ColorTool = () => {
   const [collapsed, setCollapsed] = useState(true);
   const toggleCollapse = () => setCollapsed(!collapsed);
-  const stopPropagation = e => e.stopPropagation();
+  const stopPropagation = (e: React.MouseEvent) => e.stopPropagation();
 
   return (
     <Fragment>

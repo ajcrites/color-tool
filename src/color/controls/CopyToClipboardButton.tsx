@@ -4,7 +4,11 @@
 
 import React, { useState, useEffect } from 'react';
 
-export const CopyToClipboardButton = ({ value }) => {
+export interface CopyToClipboardButtonProps {
+  value: string;
+}
+
+export const CopyToClipboardButton: React.FunctionComponent<CopyToClipboardButtonProps> = ({ value }) => {
   // Hide this button if the Clipboard API is not supported
   const [display, setDisplay] = useState(false);
 
@@ -12,15 +16,15 @@ export const CopyToClipboardButton = ({ value }) => {
     (async () => {
       try {
         setDisplay(
-          (await (navigator as any).permissions.query({
-            name: 'clipboard-write',
+          (await navigator.permissions.query({
+            name: 'clipboard-write' as 'clipboard',
           })).state === 'granted',
         );
       } catch {}
     })();
   }, []);
 
-  const copyToClipboard = () => (navigator as any).clipboard.writeText(value);
+  const copyToClipboard = () => navigator.clipboard.writeText(value);
 
   return display ? (
     <button className="copy-to-clipboard-button" onClick={copyToClipboard}>
