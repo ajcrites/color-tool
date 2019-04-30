@@ -12,7 +12,7 @@ import { isValidKeyword } from '~/color-check-util';
 export const KeywordInput = () => {
   const { keyword, hasKeyword, dispatch } = useContext(ColorToolContext);
 
-  const onChange = ({ target: { value } }) => {
+  const onChange = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(updateKeyword(value));
   };
 

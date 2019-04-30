@@ -23,7 +23,7 @@ export const MultiInput: FunctionComponent<MultiInputProps> = ({
   const { [parser]: color, dispatch } = useContext(ColorToolContext);
   const inputs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
-  const onChange = ({ target: { value } }) => {
+  const onChange = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
     // Get values of all current inputs. The input we are updating should
     // yield a new value based on user input.
     const currentColorValues = inputs.map(({ current: { value } }) => value);

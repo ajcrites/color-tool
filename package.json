@@ -12,7 +12,7 @@
   "lint-staged": {
     "**/*.ts": [
       "prettier --write --parser typescript --single-quote --trailing-comma all",
-      "tslint --fix",
+      "tslint --fix --config tslint.fix.json",
       "git add"
     ]
   },
@@ -38,10 +38,10 @@
     "parcel-plugin-static-files-copy": "2.0.0",
     "prettier": "1.16.4",
     "react-testing-library": "^6.0.0",
-    "ts-config-mobiquity-react-native": "^6.0.0",
+    "ts-config-mobiquity-react-native": "^9.0.0",
     "ts-jest": "^24.0.0",
     "tslint": "5.14.0",
-    "typescript": "3.3.3333"
+    "typescript": "^3.5.0-dev.20190426"
   },
   "staticPath": "public"
 }

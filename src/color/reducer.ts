@@ -4,15 +4,15 @@
  * corresponding valid updates are propagated to the other color types
  */
 
+import parse, { Color } from 'parse-color';
 import { getType } from 'typesafe-actions';
-import parse from 'parse-color';
-
 import {
-  isValidNumber,
   isValidKeyword,
+  isValidNumber,
   parseAsClamped,
 } from '~/color-check-util';
 import { ColorToolAction, ColorToolContextProps } from '~/ColorToolContext';
+
 import * as actions from './actions';
 
 export type ColorToolState = Pick<
@@ -20,7 +20,12 @@ export type ColorToolState = Pick<
   Exclude<keyof ColorToolContextProps, 'dispatch'>
 >;
 
-export const createStateFromParsedColor = ({ hex, hsla, rgba, keyword }) => ({
+export const createStateFromParsedColor = ({
+  hex,
+  hsla,
+  rgba,
+  keyword,
+}: Color): ColorToolState => ({
   hex,
   hsla,
   rgba,
@@ -51,7 +56,7 @@ export function colorReducer(
     case getType(actions.updateKeyword): {
       const { payload } = action;
       const { hex, keyword, ...parsed } = parse(payload);
-      let nextState = { hasKeyword: false };
+      let nextState: Partial<ColorToolState> = { hasKeyword: false };
       // keyword comes back no matter what, so we check hex as well to make sure
       // a valid color was provided
       if (hex && keyword && isValidKeyword(keyword)) {
@@ -67,7 +72,7 @@ export function colorReducer(
 
     case getType(actions.updateMulti): {
       const { parser, value } = action.payload;
-      let nextState = { [parser]: value };
+      let nextState: Partial<ColorToolState> = { [parser]: value };
       if (value.every(isValidNumber)) {
         nextState = createStateFromParsedColor(parseAsClamped(parser, value));
       }

@@ -5,6 +5,8 @@ import { ColorToolContext } from '~/ColorToolContext';
 import { updateHex } from '~/color/actions';
 import { HexInput } from '../HexInput';
 
+// tslint:disable:no-any
+
 describe('HexInput component', () => {
   afterEach(cleanup);
 

@@ -4,7 +4,6 @@
 
 import { createContext, Dispatch } from 'react';
 import { ActionType } from 'typesafe-actions';
-
 import * as actions from '~/color/actions';
 
 export type ColorToolAction = ActionType<typeof actions>;
@@ -28,4 +27,6 @@ export interface ColorToolContextProps {
   dispatch: Dispatch<ColorToolAction>;
 }
 
-export const ColorToolContext = createContext<ColorToolContextProps>({} as any);
+export const ColorToolContext = createContext<ColorToolContextProps>(
+  {} as ColorToolContextProps,
+);

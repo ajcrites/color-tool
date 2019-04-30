@@ -12,7 +12,7 @@ import { isValidHex } from '~/color-check-util';
 export const HexInput = () => {
   const { hex, dispatch } = useContext(ColorToolContext);
 
-  const onChange = ({ target: { value } }) => {
+  const onChange = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(updateHex(value));
   };
 

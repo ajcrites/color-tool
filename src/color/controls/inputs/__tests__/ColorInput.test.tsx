@@ -5,6 +5,8 @@ import { ColorToolContext } from '~/ColorToolContext';
 import { updateHex } from '~/color/actions';
 import { ColorInput } from '../ColorInput';
 
+// tslint:disable:no-any
+
 describe('ColorInput component', () => {
   afterEach(cleanup);
 

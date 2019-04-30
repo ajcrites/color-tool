@@ -18,12 +18,12 @@ export interface HslaModifierProps {
 /**
  * Button that changes the hsla index value by a specified amount
  */
-export const HslaModifier = ({ label, hslaIndex, amount }) => {
+export const HslaModifier: React.FunctionComponent<HslaModifierProps> = ({ label, hslaIndex, amount }) => {
   const { hsla, dispatch } = useContext(ColorToolContext);
 
   const onClick = () => {
-    hsla[hslaIndex] = hsla[hslaIndex] + amount;
-    dispatch(updateMulti('hsla', hsla));
+    hsla[hslaIndex] = +hsla[hslaIndex] + amount;
+    dispatch(updateMulti('hsla', hsla as number[]));
   };
 
   return (
