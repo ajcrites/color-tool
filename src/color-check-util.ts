@@ -53,7 +53,7 @@ export function parseAsClamped(parser: 'hsla' | 'rgba', values: number[]) {
 // Determine whether the input is valid. An empty string or any partial hex
 // value will be valid.
 export function isValidHex(hexValue: string) {
-  return !hexValue || /^#[a-f0-9]*$/i.test(hexValue);
+  return !hexValue || /^#[a-f0-9]{1,6}$/i.test(hexValue);
 }
 
 // Determine whether the input is valid. All keywords are pure lowercase alpha.
