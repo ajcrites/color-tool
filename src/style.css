@@ -7,11 +7,18 @@ body {
   margin-bottom: 20px;
 }
 
-.color-display {
+.color-display-container {
   margin-bottom: 25px;
   margin-left: 25px;
   width: 100px;
   height: 100px;
   border: 1px solid black;
   transition: background-color 1s;
+  background: linear-gradient(45deg, currentColor 25%,  transparent 25%, transparent 75%, currentColor 75%, currentColor),
+            linear-gradient(45deg, currentColor 25%,  transparent  25%,  transparent 75%, currentColor 75%, currentColor) 10px 10px;
+  background-size: 20px 20px;
+}
+
+.color-display {
+  height: 100%;
 }
