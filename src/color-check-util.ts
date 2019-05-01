@@ -8,9 +8,7 @@ import parse from 'parse-color';
  * `1`, but we only want to parse strictly numeric values and pass others through
  */
 export function isValidNumber(value: string | number) {
-  return (
-    Number.isFinite(+value) || /(^-?\d+(\.\d+)?$)|^\.\d+$/.test(value as string)
-  );
+  return /(^-?\d+(\.\d+)?$)|^\.\d+$/.test(value as string);
 }
 
 export function clampMultiColorValue(
