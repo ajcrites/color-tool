@@ -8,9 +8,7 @@ import parse from 'parse-color';
  * `1`, but we only want to parse strictly numeric values and pass others through
  */
 export function isValidNumber(value: string | number) {
-  return (
-    Number.isFinite(+value) || /(^-?\d+(\.\d+)?$)|^\.\d+$/.test(value as string)
-  );
+  return /(^-?\d+(\.\d+)?$)|^\.\d+$/.test(value as string);
 }
 
 export function clampMultiColorValue(
@@ -55,7 +53,7 @@ export function parseAsClamped(parser: 'hsla' | 'rgba', values: number[]) {
 // Determine whether the input is valid. An empty string or any partial hex
 // value will be valid.
 export function isValidHex(hexValue: string) {
-  return !hexValue || /^#[a-f0-9]*$/i.test(hexValue);
+  return !hexValue || /^#[a-f0-9]{1,6}$/i.test(hexValue);
 }
 
 // Determine whether the input is valid. All keywords are pure lowercase alpha.

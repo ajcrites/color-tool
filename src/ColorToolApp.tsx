@@ -48,12 +48,14 @@ export const ColorToolApp = () => {
         <MultiInput parser="hsla" label="HSL(A): " />
         <KeywordInput />
         <ColorInput />
-        <div
-          className="color-display"
-          style={{
-            backgroundColor: `rgba(${rgba.join()})`,
-          }}
-        />
+        <div className="color-display-container" >
+          <div
+            className="color-display"
+            style={{
+              backgroundColor: `rgba(${rgba.join()})`,
+            }}
+          />
+        </div>
 
         <section aria-label="hsla color modifiers" className="color-modifiers">
           <div>

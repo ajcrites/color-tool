@@ -25,13 +25,35 @@ export const createStateFromParsedColor = ({
   hsla,
   rgba,
   keyword,
-}: Color): ColorToolState => ({
+}: Partial<ColorToolState>): ColorToolState => ({
   hex,
   hsla,
   rgba,
   keyword: keyword ? keyword : '',
   hasKeyword: !!keyword,
 });
+
+/**
+ * When updating hex or keyword, the parsed color hsla/rgba always have an
+ * alpha of 1. We want to use the updated color value but retain the existing
+ * alpha value that may have been modified (if it exists).
+ */
+export const retainAlphas = (
+  oldColor: ColorToolState,
+  newColor: Color,
+): Partial<ColorToolState> => {
+  return {
+    ...newColor,
+    hsla: [
+      ...newColor.hsla.slice(0, 3),
+      (oldColor.hsla && oldColor.hsla[3]) || 1,
+    ],
+    rgba: [
+      ...newColor.rgba.slice(0, 3),
+      (oldColor.rgba && oldColor.rgba[3]) || 1,
+    ],
+  };
+};
 
 export function colorReducer(
   state: ColorToolState,
@@ -43,7 +65,9 @@ export function colorReducer(
       let nextState = {};
       // Valid and complete hex color code provided by the payload
       if (payload && /^#[a-f0-9]{6}$/i.test(payload)) {
-        nextState = createStateFromParsedColor(parse(payload));
+        nextState = createStateFromParsedColor(
+          retainAlphas(state, parse(payload)),
+        );
       }
 
       return {
@@ -60,7 +84,9 @@ export function colorReducer(
       // keyword comes back no matter what, so we check hex as well to make sure
       // a valid color was provided
       if (hex && keyword && isValidKeyword(keyword)) {
-        nextState = createStateFromParsedColor({ ...parsed, keyword, hex });
+        nextState = createStateFromParsedColor(
+          retainAlphas(state, { ...parsed, keyword, hex }),
+        );
       }
 
       return {

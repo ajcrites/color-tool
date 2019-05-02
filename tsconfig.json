@@ -1,6 +1,7 @@
 {
   "extends": "ts-config-mobiquity-react-native",
   "compilerOptions": {
+    "target": "es5",
     "baseUrl": "./src",
     "paths": {
       "~*": ["./*"]

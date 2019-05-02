@@ -13,10 +13,10 @@ export interface ColorToolContextProps {
   hex: string;
 
   // RGBA representation [0-255, 0-255, 0-255, 0-1]
-  rgba: number[] | string[];
+  rgba: (number | string)[];
 
   // HSLA representation [0-359, 0-100, 0-100, 0-1]
-  hsla: number[] | string[];
+  hsla: (number | string)[];
 
   // Keyword representation
   keyword: string;
