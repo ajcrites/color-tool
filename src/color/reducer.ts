@@ -33,6 +33,11 @@ export const createStateFromParsedColor = ({
   hasKeyword: !!keyword,
 });
 
+/**
+ * When updating hex or keyword, the parsed color hsla/rgba always have an
+ * alpha of 1. We want to use the updated color value but retain the existing
+ * alpha value that may have been modified (if it exists).
+ */
 export const retainAlphas = (
   oldColor: ColorToolState,
   newColor: Color,
@@ -42,11 +47,11 @@ export const retainAlphas = (
     hsla: [
       ...newColor.hsla.slice(0, 3),
       (oldColor.hsla && oldColor.hsla[3]) || 1,
-    ] as number[],
+    ],
     rgba: [
       ...newColor.rgba.slice(0, 3),
       (oldColor.rgba && oldColor.rgba[3]) || 1,
-    ] as number[],
+    ],
   };
 };
 
